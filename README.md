@@ -9,7 +9,7 @@ Auto update all drivers: Automatically updates all upgradable drivers.
 Uninstall a chosen driver: Allows the user to select and uninstall a specific driver.
 Provide a link for manual updates: Displays a search URL to help the user manually update a selected driver.
 
-Short User Guide
+Updated User Guide
 Run the script by opening PowerShell as Administrator.
 Select an option from the menu:
 Option 1: Lists upgradable drivers.
@@ -17,5 +17,6 @@ Option 2: Upgrade a chosen driver.
 Option 3: Automatically update all drivers.
 Option 4: Uninstall a chosen driver.
 Option 5: Provides a link for manual driver updates.
-Follow the prompts to enter the number of the driver you want to manage.
-Auto-update (Option 3) will update all listed drivers automatically.
+Option 6: Exit the script.
+Follow the prompts to manage drivers as needed.
+After each operation, the script will return to the main menu until you choose to exit (Option 6).
