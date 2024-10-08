@@ -6,6 +6,7 @@ function Show-Menu {
     Write-Host "3. Auto update all drivers"
     Write-Host "4. Uninstall a driver"
     Write-Host "5. Present driver link for manual update"
+    Write-Host "6. Exit"
 }
 
 # Option 1: List upgradable drivers
@@ -18,9 +19,10 @@ function List-UpgradableDrivers {
 function Upgrade-Driver {
     $drivers = Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, Manufacturer, DriverVersion
     Write-Host "Choose a driver to upgrade:"
+    $i = 1
     $drivers | ForEach-Object { 
-        $i++
         Write-Host "$i. $($_.DeviceName) - Manufacturer: $($_.Manufacturer) - Version: $($_.DriverVersion)"
+        $i++
     }
 
     $selection = Read-Host "Enter the number of the driver you want to upgrade"
@@ -51,9 +53,10 @@ function Auto-UpdateAllDrivers {
 function Uninstall-Driver {
     $drivers = Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, Manufacturer, DriverVersion
     Write-Host "Choose a driver to uninstall:"
+    $i = 1
     $drivers | ForEach-Object { 
-        $i++
         Write-Host "$i. $($_.DeviceName) - Manufacturer: $($_.Manufacturer) - Version: $($_.DriverVersion)"
+        $i++
     }
 
     $selection = Read-Host "Enter the number of the driver you want to uninstall"
@@ -71,9 +74,10 @@ function Uninstall-Driver {
 function Manual-UpdateLink {
     $drivers = Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, Manufacturer, DriverVersion
     Write-Host "Choose a driver to get its update link:"
+    $i = 1
     $drivers | ForEach-Object { 
-        $i++
         Write-Host "$i. $($_.DeviceName) - Manufacturer: $($_.Manufacturer) - Version: $($_.DriverVersion)"
+        $i++
     }
 
     $selection = Read-Host "Enter the number of the driver you want to update manually"
@@ -89,14 +93,19 @@ function Manual-UpdateLink {
     }
 }
 
-# Main execution
-Show-Menu
-$choice = Read-Host "Enter your choice"
-switch ($choice) {
-    1 { List-UpgradableDrivers }
-    2 { Upgrade-Driver }
-    3 { Auto-UpdateAllDrivers }
-    4 { Uninstall-Driver }
-    5 { Manual-UpdateLink }
-    default { Write-Host "Invalid choice. Please try again." }
+# Main execution loop
+while ($true) {
+    Show-Menu
+    $choice = Read-Host "Enter your choice"
+    switch ($choice) {
+        1 { List-UpgradableDrivers }
+        2 { Upgrade-Driver }
+        3 { Auto-UpdateAllDrivers }
+        4 { Uninstall-Driver }
+        5 { Manual-UpdateLink }
+        6 { Write-Host "Exiting..."; break }
+        default { Write-Host "Invalid choice. Please try again." }
+    }
+
+    Write-Host "`nReturning to main menu...`n"
 }
