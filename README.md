@@ -17,6 +17,4 @@ Option 2: Upgrade a chosen driver.
 Option 3: Automatically update all drivers.
 Option 4: Uninstall a chosen driver.
 Option 5: Provides a link for manual driver updates.
-Option 6: Exit the script.
 Follow the prompts to manage drivers as needed.
-After each operation, the script will return to the main menu until you choose to exit (Option 6).
